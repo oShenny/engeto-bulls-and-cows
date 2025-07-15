@@ -5,7 +5,7 @@ author: Martin Šenk
 email: oshenny@icloud.com
 """
 
-# This is the program that will simulate the game of Bulls and Cows.
+# This file is part of the Engeto online python academy.
 
 import random
 
@@ -13,6 +13,11 @@ import random
 INTRO_TEXT = """Hi there! 
 I've generated a random 4 digit number for you. 
  Let's play a bulls and cows game."""
+
+# ________________________________________________
+# ________________________________________________
+# ________________________________________________
+# Below are functions that help to separate sentences and calculate their lengths. Functions are not used in the game, but they are useful for the intro text and were educationally included.
 
 SENTENCE_ENDING_CHARS = ["!", "?", "."]
 
@@ -62,6 +67,10 @@ def calculate_sentence_lengths(
 
 separator = "-" * max(calculate_sentence_lengths(separate_sentences(INTRO_TEXT)))
 
+# ________________________________________________
+# ________________________________________________
+# ________________________________________________
+# Below starts the main part of the game, which generates a random number, checks user input, calculates bulls and cows, and provides feedback until the user guesses the number correctly.
 
 def generate_game_number() -> str:
     
@@ -76,6 +85,11 @@ def generate_game_number() -> str:
 
 
 def check_user_input() -> str:
+
+    """
+    Check user input for the game number.
+    Return the input if it is valid, otherwise prompt the user again.
+    """
 
     while True:
         user_input = input("What is your guess? \n >>> ").strip()
@@ -104,6 +118,11 @@ guesses = []
 
 def check_bulls_and_cows(guess: str, game_number: str) -> tuple:
 
+    """
+    Check the user's guess against the generated game number.
+    Return the number of bulls, cows and the number of guesses made.
+    """
+
     while True:
         if guess not in guesses:
             guesses.append(guess)
@@ -124,6 +143,11 @@ def check_bulls_and_cows(guess: str, game_number: str) -> tuple:
 
 def choose_word(bulls: int, cows: int) -> tuple:
 
+    """
+    Choose the correct word for bulls and cows based on their count.
+    Return a tuple with the correct words.
+    """
+
     if bulls == 1:
         bulls_word = "bull"
     else:
@@ -138,6 +162,17 @@ def choose_word(bulls: int, cows: int) -> tuple:
 
 
 def main():
+
+    """
+    Main fuction to run the Bulls and Cows game.
+    :args: None
+
+    This function inits the game, generates a random number,
+    checks user input, calculates bulls and cows, and provides feedback
+    until the user guesses the number correctly.
+    """
+
+
     introduction_sentences = separate_sentences(INTRO_TEXT)
     
     for sentence in introduction_sentences:
@@ -145,7 +180,6 @@ def main():
         print(separator)
     
     generated_game_number = generate_game_number()
-    print(generated_game_number)
 
     print(f"""The ruels are simple:
 - You will guess a 4-digit number.
