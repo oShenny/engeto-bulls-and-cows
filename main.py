@@ -94,8 +94,12 @@ def check_user_input() -> str:
     while True:
         user_input = input("What is your guess? \n >>> ").strip()
         print(separator)
+
+        if len(user_input) == 0:
+            print("You didn't enter anything. Please do so.")
+            print(separator)
         
-        if not user_input.isdigit():
+        elif not user_input.isdigit():
             print("Your input should only contain digits.")
             print(separator)
 
