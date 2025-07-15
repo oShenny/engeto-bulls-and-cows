@@ -72,9 +72,7 @@ def generate_game_number() -> str:
     first_number = random.choice(range(1, 10))
     other_numbers = random.sample([number for number in range(10) if number != first_number], 3)
 
-    print(other_numbers)
-
-    return str(first_number) + "".join(str(other_numbers))
+    return str(first_number) + "".join(str(number) for number in other_numbers)
 
 
 def check_user_input() -> str:
@@ -147,6 +145,7 @@ def main():
         print(separator)
     
     generated_game_number = generate_game_number()
+    print(generated_game_number)
 
     print(f"""The ruels are simple:
 - You will guess a 4-digit number.
