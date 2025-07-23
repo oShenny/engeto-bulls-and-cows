@@ -112,7 +112,7 @@ def check_user_input() -> str:
             print(separator)
 
         elif len(set(user_input)) != 4:
-            print("Eeach digit in the number must be unique. Please try again.")
+            print("Each digit in the number must be unique. Please try again.")
             print(separator)
         else: 
             return user_input
