@@ -188,7 +188,7 @@ def main():
     
     generated_game_number = generate_game_number()
 
-    print(f"""The ruels are simple:
+    print(f"""The rules are simple:
 - You will guess a 4-digit number.
 - For every guess, I will tell you how many bulls and cows you have.
 - A bull is a digit that is in the correct position.
