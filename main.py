@@ -171,7 +171,7 @@ def choose_word(bulls: int, cows: int) -> tuple:
 def main():
 
     """
-    Main fuction to run the Bulls and Cows game.
+    Main function to run the Bulls and Cows game.
     :args: None
 
     This function inits the game, generates a random number,
