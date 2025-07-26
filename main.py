@@ -67,7 +67,13 @@ def calculate_sentence_lengths(
         in sentences
     ]
 
-separator = "-" * max(calculate_sentence_lengths(separate_sentences(INTRO_TEXT)))
+def create_separator(text: str, char: str = "-") -> str:
+
+    return char * max(calculate_sentence_lengths(separate_sentences(text)))
+
+def print_sep(printed_text: str):
+
+    print(create_separator(printed_text))
 
 # ________________________________________________
 # ________________________________________________
@@ -95,27 +101,27 @@ def check_user_input() -> str:
 
     while True:
         user_input = input("What is your guess? \n >>> ").strip()
-        print(separator)
+        print_sep(INTRO_TEXT)
 
         if len(user_input) == 0:
             print("You didn't enter anything. Please do so.")
-            print(separator)
+            print_sep(INTRO_TEXT)
         
         elif not user_input.isdigit():
             print("Your input should only contain digits.")
-            print(separator)
+            print_sep(INTRO_TEXT)
 
         elif len(user_input) != LENGTH_LIMIT:
             print("Please enter a 4-digit number.")
-            print(separator)
+            print_sep(INTRO_TEXT)
 
         elif user_input[0] == "0":
             print("First digit cannot be 0. Please try again.")
-            print(separator)
+            print_sep(INTRO_TEXT)
 
         elif len(set(user_input)) != LENGTH_LIMIT:
             print("Each digit in the number must be unique. Please try again.")
-            print(separator)
+            print_sep(INTRO_TEXT)
         else: 
             return user_input
 
@@ -140,7 +146,7 @@ def check_bulls_and_cows(guess: str, game_number: str, guesses: list[str]) -> tu
 
         else:
             print("You've already guessed that number. Try again.")
-            print(separator)
+            print_sep(INTRO_TEXT)
             guess = check_user_input()
 
     return bulls, cows, number_of_guesses
@@ -177,12 +183,11 @@ def main():
     until the user guesses the number correctly.
     """
 
-
     introduction_sentences = separate_sentences(INTRO_TEXT)
     
     for sentence in introduction_sentences:
         print(sentence)
-        print(separator)
+        print_sep(INTRO_TEXT)
     
     generated_game_number = generate_game_number()
 
@@ -194,21 +199,21 @@ def main():
 - A bull is a digit that is in the correct position.
 - A cow is a digit that is in the number, but not in the correct position.
 - The game ends when you guess the number correctly.""")
-    print(separator)
+    print_sep(INTRO_TEXT)
 
     user_guess = check_user_input()
     bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number, guesses)
     bulls_word, cows_word = choose_word(bulls, cows)
     
     print(f"You have {bulls} {bulls_word} and {cows} {cows_word}.")
-    print(separator)
+    print_sep(INTRO_TEXT)
 
     while user_guess != generated_game_number:
         user_guess = check_user_input()
         bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number, guesses)
         bulls_word, cows_word = choose_word(bulls, cows)
         print(f"You have {bulls} {bulls_word} and {cows} {cows_word}.")
-        print(separator)
+        print_sep(INTRO_TEXT)
 
     else:
         print(f"""
