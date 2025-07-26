@@ -117,13 +117,9 @@ def check_user_input() -> str:
         else: 
             return user_input
 
-# ________________________________________________
-# ________________________________________________
-guesses = []
-# ________________________________________________
-# ________________________________________________
 
-def check_bulls_and_cows(guess: str, game_number: str) -> tuple:
+
+def check_bulls_and_cows(guess: str, game_number: str, guesses: list[str]) -> tuple:
 
     """
     Check the user's guess against the generated game number.
@@ -188,6 +184,8 @@ def main():
     
     generated_game_number = generate_game_number()
 
+    guesses = []
+
     print(f"""The rules are simple:
 - You will guess a 4-digit number.
 - For every guess, I will tell you how many bulls and cows you have.
@@ -197,7 +195,7 @@ def main():
     print(separator)
 
     user_guess = check_user_input()
-    bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number)
+    bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number, guesses)
     bulls_word, cows_word = choose_word(bulls, cows)
     
     print(f"You have {bulls} {bulls_word} and {cows} {cows_word}.")
@@ -205,7 +203,7 @@ def main():
 
     while user_guess != generated_game_number:
         user_guess = check_user_input()
-        bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number)
+        bulls, cows, number_of_guesses = check_bulls_and_cows(user_guess, generated_game_number, guesses)
         bulls_word, cows_word = choose_word(bulls, cows)
         print(f"You have {bulls} {bulls_word} and {cows} {cows_word}.")
         print(separator)
