@@ -69,9 +69,17 @@ def calculate_sentence_lengths(
 
 def create_separator(text: str, char: str = "-") -> str:
 
+    """
+    Create a separator string of a given char with the length equal to the length of the longest sentence in the text.
+    """
+
     return char * max(calculate_sentence_lengths(separate_sentences(text)))
 
 def print_sep(printed_text: str):
+
+    """
+    Print a separator based on the longest sentence in the printed text.
+    """
 
     print(create_separator(printed_text))
 
