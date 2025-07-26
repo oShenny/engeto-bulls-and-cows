@@ -21,6 +21,8 @@ I've generated a random 4 digit number for you.
 
 SENTENCE_ENDING_CHARS = ["!", "?", "."]
 
+LENGTH_LIMIT = 4
+
 
 def separate_sentences(
         text: str, 
@@ -103,7 +105,7 @@ def check_user_input() -> str:
             print("Your input should only contain digits.")
             print(separator)
 
-        elif len(user_input) != 4:
+        elif len(user_input) != LENGTH_LIMIT:
             print("Please enter a 4-digit number.")
             print(separator)
 
@@ -111,7 +113,7 @@ def check_user_input() -> str:
             print("First digit cannot be 0. Please try again.")
             print(separator)
 
-        elif len(set(user_input)) != 4:
+        elif len(set(user_input)) != LENGTH_LIMIT:
             print("Each digit in the number must be unique. Please try again.")
             print(separator)
         else: 
@@ -130,7 +132,7 @@ def check_bulls_and_cows(guess: str, game_number: str, guesses: list[str]) -> tu
         if guess not in guesses:
             guesses.append(guess)
 
-            bulls = sum(1 for position in range(4) if guess[position] == game_number[position])
+            bulls = sum(1 for position in range(LENGTH_LIMIT) if guess[position] == game_number[position])
             cows = sum(1 for digit in guess if digit in game_number) - bulls
             number_of_guesses = len(guesses)
             break
